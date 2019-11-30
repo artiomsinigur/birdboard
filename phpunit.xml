@@ -30,6 +30,11 @@
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
+        <!--Ajouter ces lignes lors de test pour écraser/overwrite les lignes du fichier env-->
+        <server name="TELESCOPE_ENABLED" value="false"/>
+        <!--Écraser la connexion du fichier env-->
+        <server name="DB_CONNECTION" value="sqlite"/>
+        <!--Dire d'avoir un DB en memoire-->
+        <server name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>
