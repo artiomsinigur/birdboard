@@ -11,17 +11,6 @@
 |
 */
 
-// Tester sans créer du controller
-//Route::get('/', function () {
-//    return view('welcome', [
-        // 'tasks' => $tasks,
-        // 'title' => 'Title of project'
-//    ]);
-//});
-
-//Route::post('/projects', function() {
-    // App\Project::create(request(['title', 'description']));
-//});
-
 Route::get('/projects', 'ProjectsController@index');
-Route::post('/projects', 'ProjectsController@store');
+Route::get('/project', 'ProjectsController@show');
+Route::get('/projects/create', 'ProjectsController@create');
