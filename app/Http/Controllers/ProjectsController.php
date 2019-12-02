@@ -66,7 +66,8 @@ class ProjectsController extends Controller
      * Delete the specified project
      */
     public function destroy(Project $project) {
-        $project->delete();
+        // Delete the specified project without retrieving it
+        Project::destroy($project->id);
 
         return redirect('projects');
     }
