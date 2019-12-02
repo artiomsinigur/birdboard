@@ -30,11 +30,8 @@ class ProjectsController extends Controller
      */
     public function store()
     {
-        $validateProject = request()->validate([
-            'title'     => ['required', 'min:3', 'max:50'],
-            'description'     => ['required', 'min:5', 'max:500']
-        ]);
-        Project::create($validateProject);
+        $attributes = $this->validateProject();
+        Project::create($attributes);
 
         return redirect('/projects');
     }
@@ -45,5 +42,15 @@ class ProjectsController extends Controller
      */
     public function show(Project $project) {
         return view('projects/project', compact('project'));
+    }
+
+    /**
+     * Validate the project form
+     */
+    private function validateProject() {
+        return request()->validate([
+            'title'     => ['required', 'min:3', 'max:50'],
+            'description'     => ['required', 'min:5', 'max:500']
+        ]);
     }
 }
