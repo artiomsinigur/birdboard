@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
     public function index() {
-//        $allProjects = App\Project::all()->map->title;
+        // Get all titles
+        // $titlesProjects = Project::all()->map->title;
+
         $projects = Project::all();
-//        return view('index', ['projects' => $projects]);
-        return view('projects/index', compact($projects));
+        return view('projects/index', compact('projects'));
     }
 
     public function show() {
