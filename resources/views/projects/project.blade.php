@@ -40,21 +40,28 @@
                 <div class="main-content mb-4">
                     <div class="row">
                         <div class="col-12 col-sm-8 pr-sm-0">
+
                             <!-- Tasks -->
                             <section class="tasks mb-4">
                                 <h2 class="tasks-title h5 mb-0">Tasks</h2>
-                                <!-- To do -->
-                                <div class="to-do mb-3">
-                                    <div class="card" style="font-size: .85rem; border-left: 4px solid #FFC107">
-                                        <div class="card-body d-flex justify-content-between p-2">
-                                            <h3 class="card-title m-0 h6 text-capitalize text-dark">House move</h3>
-                                            <div class="inside d-flex align-items-center">
-                                                <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
-                                                <input type="checkbox" name="task">
-                                            </div>
-                                        </div>
-                                    </div><!-- /End task card -->
-                                </div><!-- /End to do -->
+                                @if($project->tasks->count())
+                                    @foreach($project->tasks as $task)
+                                        <!-- To do -->
+                                        <div class="to-do mb-3">
+                                            <div class="card" style="font-size: .85rem; border-left: 4px solid #FFC107">
+                                                <div class="card-body d-flex justify-content-between p-2">
+                                                    <h3 class="card-title m-0 h6 text-capitalize text-dark">{{ $task->description }}</h3>
+                                                    <div class="inside d-flex align-items-center">
+                                                        <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
+                                                        <input type="checkbox" name="task">
+                                                    </div>
+                                                </div>
+                                            </div><!-- /End task card -->
+                                        </div><!-- /End to do -->
+                                    @endforeach
+                                @else
+                                    <p>No tasks yet.</p>
+                                @endif
                             </section><!-- /End tasks -->
 
                             <!-- Notes -->
