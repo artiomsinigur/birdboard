@@ -59,12 +59,7 @@
                         </div>
 
                         <div class="col-12 col-sm-4 mt-4">
-                            <div class="card" style="font-size: .85rem; border-top: 4px solid #007BFF">
-                                <div class="card-body">
-                                    <h2 class="card-title h6 text-capitalize"><a href="">House move</a></h2>
-                                    <p class="card-text text-black-50">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div><!-- /End card -->
+                            @include('projects/card')
                         </div>
                     </div>
                 </div><!-- /End main content -->
