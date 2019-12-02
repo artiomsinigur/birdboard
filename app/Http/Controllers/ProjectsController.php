@@ -56,20 +56,11 @@ class ProjectsController extends Controller
      * Update the project
      */
     public function update(Project $project) {
-//        $project = Project::find($id);
-//        dd($project);
-
-        $this->validateProject();
-
-        $project->update([
-            'title' => request('title'),
-            'description' => request('description'),
-        ]);
+        $project->update($this->validateProject());
 
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);
     }
-
 
     /**
      * Validate the project form
