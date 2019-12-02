@@ -47,8 +47,7 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing a project
      */
-    public function edit($id) {
-        $project = Project::find($id);
+    public function edit(Project $project) {
         return view('projects/edit', compact('project'));
     }
 
@@ -71,7 +70,6 @@ class ProjectsController extends Controller
 
         return redirect('projects');
     }
-
 
     /**
      * Validate the project form
