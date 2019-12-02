@@ -53,7 +53,7 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Update the project
+     * Update the specified project
      */
     public function update(Project $project) {
         $project->update($this->validateProject());
@@ -61,6 +61,16 @@ class ProjectsController extends Controller
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);
     }
+
+    /**
+     * Delete the specified project
+     */
+    public function destroy($id) {
+        $project = Project::findOrFail($id)->delete();
+
+        return redirect('projects');
+    }
+
 
     /**
      * Validate the project form

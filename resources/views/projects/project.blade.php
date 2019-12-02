@@ -26,6 +26,11 @@
                             </ul>
                             <div>
                                 <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-secondary ml-2">Edit</a>
+                                <form method="POST" action="/projects/{{ $project->id }}" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="invite-project btn btn-outline-danger ml-2">Delete</button>
+                                </form>
                                 <a href="" class="invite-project btn btn-primary ml-2">Invite to project</a>
                             </div>
                         </div>
