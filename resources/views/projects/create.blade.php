@@ -21,7 +21,7 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="titleControl">Title</label>
-                    <input type="text" name="title" class="form-control" id="titleControl" placeholder="Title">
+                    <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : 'is-valid' }}" id="titleControl" value="{{ old('title') }}" placeholder="Title">
                 </div>
                 @if($errors->has('title'))
                     <div class="alert alert-danger">{{ $errors->first('title') }}</div>
@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                     <label for="descriptionControl">Description</label>
-                    <textarea class="form-control" name="description" id="descriptionControl" rows="3" placeholder="Description"></textarea>
+                    <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : 'is-valid' }}" name="description" id="descriptionControl" rows="3" placeholder="Description">{{ old('description') }}</textarea>
                 </div>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
