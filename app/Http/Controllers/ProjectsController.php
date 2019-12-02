@@ -45,6 +45,29 @@ class ProjectsController extends Controller
     }
 
     /**
+     * Show the form for editing a project
+     */
+    public function edit($id) {
+        $project = Project::find($id);
+        return view('projects/edit', compact('project'));
+    }
+
+    /**
+     * Update the project
+     */
+    public function update($id) {
+        $project = Project::find($id);
+
+        $project->update([
+            'title' => request('title'),
+            'description' => request('description'),
+        ]);
+
+        return redirect('projects/'. $id);
+    }
+
+
+    /**
      * Validate the project form
      */
     private function validateProject() {

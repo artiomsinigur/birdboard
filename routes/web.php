@@ -11,8 +11,21 @@
 |
 */
 
+/*
+ * The path for routing a project
+    GET /projects (index)
+    GET /projects/create (create)
+    POST /projects (store)
+    GET /projects/1 (show)
+    GET /projects/1/edit (edit)
+    PATCH /projects/1 (update)
+    DELETE /projects/1 (destroy)
+*/
+
 Route::get('/projects', 'ProjectsController@index');
 Route::get('/projects/create', 'ProjectsController@create');
 Route::post('/projects', 'ProjectsController@store');
 Route::get('/projects/{project}', 'ProjectsController@show');
+Route::get('/projects/{project}/edit', 'ProjectsController@edit');
+Route::patch('/projects/{project}', 'ProjectsController@update');
 

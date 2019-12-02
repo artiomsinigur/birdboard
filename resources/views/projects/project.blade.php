@@ -25,6 +25,7 @@
                                 <li class="list-inline-item"><img class="rounded-circle" src="https://placeimg.com/35/35/people" alt="User"></li>
                             </ul>
                             <div>
+                                <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-secondary ml-2">Edit</a>
                                 <a href="" class="invite-project btn btn-primary ml-2">Invite to project</a>
                             </div>
                         </div>
