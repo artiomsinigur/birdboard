@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+    /**
+     * Show all projects
+     */
     public function index() {
         // Get all titles
         // $titlesProjects = Project::all()->map->title;
@@ -15,39 +18,28 @@ class ProjectsController extends Controller
         return view('projects/index', compact('projects'));
     }
 
-    public function show() {
-        return view('projects/project');
-    }
-
+    /**
+     * Show the form for creating a new project
+     */
     public function create() {
         return view('projects/create');
     }
 
+    /**
+     * Create a new project
+     */
     public function store()
     {
-        // Exemple
-        // Book c'est le Model
-        // create() c'est la method
-        /*
-        $data = request()->validate([
-            'title' => 'required',
-            'author' => 'required'
-        ]);
-        Book::create($data);
-        */
-        // ou Refactory
-        // Book::create($this->validateRequest());
+        Project::create(request(['title', 'description']));
 
-
-        // validate the date
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-
-        Project::create($attributes);
-
-        // redirect
         return redirect('/projects');
+    }
+
+    /**
+     * Show the project with project id
+     * @param Project $project
+     */
+    public function show(Project $project) {
+        return view('projects/project', compact('project'));
     }
 }

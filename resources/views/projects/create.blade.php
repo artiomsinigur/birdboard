@@ -17,14 +17,15 @@
         <div class="main-content">
             <h1 class="h5">Create a project</h1>
 
-            <form action="/projects" method="POST">
+            <form method="POST" action="/projects">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="titleControl">Title</label>
-                    <input type="email" class="form-control" id="titleControl" placeholder="Title">
+                    <input type="text" name="title" class="form-control" id="titleControl" placeholder="Title">
                 </div>
                 <div class="form-group">
                     <label for="descriptionControl">Description</label>
-                    <textarea class="form-control" id="descriptionControl" rows="3" placeholder="Description"></textarea>
+                    <textarea class="form-control" name="description" id="descriptionControl" rows="3" placeholder="Description"></textarea>
                 </div>
                 <div>
                     <button class="btn btn-primary" type="submit" name="create">Create</button>
