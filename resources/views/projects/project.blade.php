@@ -25,6 +25,7 @@
                                 <li class="list-inline-item"><img class="rounded-circle" src="https://placeimg.com/35/35/people" alt="User"></li>
                             </ul>
                             <div>
+                                <a href="/projects/{{ $project->id }}/create" class="invite-project btn btn-outline-secondary ml-2">Add a task</a>
                                 <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-secondary ml-2">Edit</a>
                                 <form method="POST" action="/projects/{{ $project->id }}" class="d-inline">
                                     @csrf
@@ -50,10 +51,14 @@
                                         <div class="to-do mb-3">
                                             <div class="card" style="font-size: .85rem; border-left: 4px solid #FFC107">
                                                 <div class="card-body d-flex justify-content-between p-2">
-                                                    <h3 class="card-title m-0 h6 text-capitalize text-dark">{{ $task->description }}</h3>
+                                                    <h3 class="card-title m-0 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">{{ $task->description }}</h3>
                                                     <div class="inside d-flex align-items-center">
                                                         <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
-                                                        <input type="checkbox" name="task">
+                                                        <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                                                            @method('PATCH')
+                                                            @csrf
+                                                            <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div><!-- /End task card -->

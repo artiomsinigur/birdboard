@@ -18,6 +18,10 @@
         h1,h2,h3,h4, .breadcrump-item a {
             color: #B0B2B4;
         }
+        .is-complete {
+            color: #B0B2B4 !important;
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body style="background-color: #F5F6F9">

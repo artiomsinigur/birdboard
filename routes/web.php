@@ -30,3 +30,11 @@ Route::get('/projects/{project}/edit', 'ProjectsController@edit');
 Route::patch('/projects/{project}', 'ProjectsController@update');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
 
+//Tasks
+//Route::post('/projects/{project}/task', 'TasksController@store');
+
+//Project's tasks
+Route::get('/projects/{project}/create', 'ProjectTasksController@create');
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::patch('/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
+
