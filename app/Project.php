@@ -9,7 +9,7 @@ class Project extends Model
     protected $fillable = ['title', 'description'];
 
     /**
-     * Project has tasks many tasks
+     * Project has many tasks
      */
     public function tasks() {
         return $this->hasMany(Task::class);

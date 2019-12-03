@@ -55,6 +55,11 @@
                                                     <div class="inside d-flex align-items-center">
                                                         <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
                                                         <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
+                                                        </form>
+                                                        <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
                                                             @method('PATCH')
                                                             @csrf
                                                             <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
