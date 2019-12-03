@@ -26,7 +26,7 @@
                             </ul>
                             <div>
                                 <a href="/projects/{{ $project->id }}/create" class="invite-project btn btn-outline-secondary ml-2">Add a task</a>
-                                <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-secondary ml-2">Edit</a>
+                                <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-info ml-2">Edit</a>
                                 <form method="POST" action="/projects/{{ $project->id }}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -54,6 +54,7 @@
                                                     <h3 class="card-title m-0 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">{{ $task->description }}</h3>
                                                     <div class="inside d-flex align-items-center">
                                                         <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
+                                                        <a href="/projects/{{ $project->id }}/tasks/{{ $task->id }}/edit" class="btn btn-sm btn-outline-info">Edit</a>
                                                         <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
                                                             @method('DELETE')
                                                             @csrf

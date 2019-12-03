@@ -37,7 +37,7 @@
                 @enderror
 
                 <div>
-                    <button class="btn btn-primary" type="submit" name="create">Update</button>
+                    <button class="btn btn-primary" type="submit" name="edit">Update</button>
                     <a href="/projects" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </form>
