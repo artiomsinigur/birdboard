@@ -18,7 +18,7 @@
         <div class="main-content">
             <h1 class="h5">Add a task</h1>
 
-            <form method="POST" action="/projects/{{ $project->id }}/tasks">
+            <form method="POST" action="/projects/{{ $project->id }}/projectTasks">
                 @csrf
                 <div class="form-group">
                     <label for="descControl">Description</label>

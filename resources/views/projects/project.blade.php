@@ -60,7 +60,7 @@
                                                             @csrf
                                                             <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
                                                         </form>
-                                                        <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                                                        <form method="POST" action="/projects/{{ $project->id }}/projectTasks/{{ $task->id }}">
                                                             @method('PATCH')
                                                             @csrf
                                                             <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
