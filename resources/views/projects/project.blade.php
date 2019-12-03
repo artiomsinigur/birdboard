@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tempapp')
 
 @section('title', 'Project')
 
@@ -18,21 +18,21 @@
                     </nav><!-- /End navigation -->
 
                     <!-- Block invite to project -->
-                    <div class="block-invite">
-                        <div class="inside d-flex">
+                    <div class="block-invite flex-grow-1">
+                        <div class="inside d-flex align-items-center">
+                            <a href="/projects/{{ $project->id }}/create" class="invite-project mr-auto align-self-start btn btn-sm btn-outline-secondary">Add a task</a>
                             <ul class="invited-user list-inline mb-0">
                                 <li class="list-inline-item"><img class="rounded-circle" src="https://placeimg.com/35/35/people" alt="User"></li>
                                 <li class="list-inline-item"><img class="rounded-circle" src="https://placeimg.com/35/35/people" alt="User"></li>
                             </ul>
                             <div>
-                                <a href="/projects/{{ $project->id }}/create" class="invite-project btn btn-outline-secondary ml-2">Add a task</a>
-                                <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-outline-info ml-2">Edit</a>
+                                <a href="/projects/{{ $project->id }}/edit" class="invite-project btn btn-sm btn-outline-info ml-2">Edit</a>
                                 <form method="POST" action="/projects/{{ $project->id }}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="invite-project btn btn-outline-danger ml-2">Delete</button>
+                                    <button type="submit" class="invite-project btn btn-sm btn-outline-danger">Delete</button>
                                 </form>
-                                <a href="" class="invite-project btn btn-primary ml-2">Invite to project</a>
+                                <a href="" class="invite-project btn btn-sm btn-primary">Invite to project</a>
                             </div>
                         </div>
                     </div><!-- /End invite -->

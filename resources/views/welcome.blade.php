@@ -83,14 +83,6 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <ul>
-                    <h2>{{ $title }}</h2>
-                    @foreach($tasks as $task)
-                        <li>{{ $task }}</li>
-                    @endforeach
-                </ul>
-
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>

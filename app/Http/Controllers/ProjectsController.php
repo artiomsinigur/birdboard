@@ -3,18 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
+    public function __construct()
+    {
+        // The middleware will be apply for every methods in this ProjectsController
+        $this->middleware('auth');
+    }
+
     /**
-     * Show all projects
+     * Show all user's projects
      */
     public function index() {
         // Get all titles
         // $titlesProjects = Project::all()->map->title;
 
-        $projects = Project::all();
+        $projects = Project::where('owner_id', auth()->id())->get();
+
         return view('projects/index', compact('projects'));
     }
 
@@ -28,9 +38,11 @@ class ProjectsController extends Controller
     /**
      * Create a new project
      */
-    public function store()
-    {
+    public function store() {
         $attributes = $this->validateProject();
+        $attributes['owner_id'] = auth()->id();
+//        $user = Auth::user()->name;
+//        $user = auth()->user();
         Project::create($attributes);
 
         return redirect('/projects');
@@ -41,6 +53,10 @@ class ProjectsController extends Controller
      * @param Project $project
      */
     public function show(Project $project) {
+//        abort_if($project->owner_id !== auth()->id(), 403);
+
+        $this->authorize('view', $project);
+
         return view('projects/project', compact('project'));
     }
 
@@ -48,6 +64,8 @@ class ProjectsController extends Controller
      * Show the form for editing a project
      */
     public function edit(Project $project) {
+        $this->authorize('update', $project);
+
         return view('projects/edit', compact('project'));
     }
 
@@ -55,6 +73,8 @@ class ProjectsController extends Controller
      * Update the specified project
      */
     public function update(Project $project) {
+        $this->authorize('update', $project);
+
         $project->update($this->validateProject());
 
 //        return redirect()->route('projects', [$project]); // ???
@@ -65,6 +85,8 @@ class ProjectsController extends Controller
      * Delete the specified project
      */
     public function destroy(Project $project) {
+        $this->authorize('delete', $project);
+
         // Delete the specified project without retrieving it
         Project::destroy($project->id);
 

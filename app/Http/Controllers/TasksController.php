@@ -35,7 +35,7 @@ class TasksController extends Controller
 
     public function validateTask() {
         return request()->validate([
-            'description' => ['required', 'min:3', 'max:20']
+            'description' => ['required', 'min:3', 'max:30']
         ]);
     }
 }
