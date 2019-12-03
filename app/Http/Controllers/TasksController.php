@@ -8,8 +8,8 @@ use App\Task;
 
 class TasksController extends Controller
 {
-    public function destroy($project_id, $task_id) {
-        Task::findOrFail($task_id)->delete();
+    public function destroy(Project $project, Task $task) {
+        Task::destroy($task->id);
 
         return back();
     }
