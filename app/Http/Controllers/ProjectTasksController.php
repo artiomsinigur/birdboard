@@ -19,9 +19,7 @@ class ProjectTasksController extends Controller
      * Store a task for a project
      */
     public function store(Project $project) {
-        $attributeTask = $this->validateTask();
-        $attributeTask['project_id'] = $project->id;
-        Task::create($attributeTask);
+        $project->addTask($this->validateTask());
 
         return redirect('projects/' . $project->id);
     }
