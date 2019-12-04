@@ -1,4 +1,4 @@
-@extends('layouts.tempapp')
+@extends('layouts.app')
 
 @section('title', 'Project')
 
@@ -50,11 +50,16 @@
                                         <!-- To do -->
                                         <div class="to-do mb-3">
                                             <div class="card" style="font-size: .85rem; border-left: 4px solid #FFC107">
-                                                <div class="card-body d-flex justify-content-between p-2">
-                                                    <h3 class="card-title m-0 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">{{ $task->description }}</h3>
+                                                <div class="card-body d-flex p-2">
+
+                                                    <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}" class="flex-grow-1 mr-2">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <input type="text" name="description" value="{{ $task->description }}" class="card-title w-100 m-0 border-0 p-1 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">
+                                                    </form>
+
                                                     <div class="inside d-flex align-items-center">
                                                         <span class="card-due-date mr-2 mb-1 text-black-50"><small>Due Tomorrow</small></span>
-                                                        <a href="/projects/{{ $project->id }}/tasks/{{ $task->id }}/edit" class="btn btn-sm btn-outline-info">Edit</a>
                                                         <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
                                                             @method('DELETE')
                                                             @csrf
@@ -63,6 +68,7 @@
                                                         <form method="POST" action="/projects/{{ $project->id }}/projectTasks/{{ $task->id }}">
                                                             @method('PATCH')
                                                             @csrf
+                                                            {{--<input type="text" name="description" value="{{ $task->description }}">--}}
                                                             <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
                                                         </form>
                                                     </div>

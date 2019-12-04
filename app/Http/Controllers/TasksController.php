@@ -9,13 +9,6 @@ use App\Task;
 class TasksController extends Controller
 {
     /**
-     * Show the form for editing a task
-     */
-    public function edit(Project $project, Task $task) {
-        return view('tasks/edit', compact('project','task'));
-    }
-
-    /**
      * Update a specified task that belongs to a project
      */
     public function update(Project $project, Task $task) {

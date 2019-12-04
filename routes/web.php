@@ -21,7 +21,9 @@
     PATCH /projects/1 (update)
     DELETE /projects/1 (destroy)
 */
+Auth::routes();
 
+Route::get('/', 'ProjectsController@index');
 Route::get('/projects', 'ProjectsController@index');
 Route::get('/projects/create', 'ProjectsController@create');
 Route::post('/projects', 'ProjectsController@store');
@@ -31,7 +33,6 @@ Route::patch('/projects/{project}', 'ProjectsController@update');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
 
 //Tasks
-Route::get('/projects/{project}/tasks/{task}/edit', 'TasksController@edit');
 Route::patch('/projects/{project}/tasks/{task}', 'TasksController@update');
 Route::delete('/projects/{project}/tasks/{task}', 'TasksController@destroy');
 
@@ -39,18 +40,3 @@ Route::delete('/projects/{project}/tasks/{task}', 'TasksController@destroy');
 Route::get('/projects/{project}/create', 'ProjectTasksController@create');
 Route::post('/projects/{project}/projectTasks', 'ProjectTasksController@store');
 Route::patch('/projects/{project}/projectTasks/{task}', 'ProjectTasksController@update');
-
-
-Auth::routes();
-
-Route::get('/', function() {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
