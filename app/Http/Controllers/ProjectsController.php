@@ -20,10 +20,7 @@ class ProjectsController extends Controller
      * Show all user's projects
      */
     public function index() {
-        // Get all titles
-        // $titlesProjects = Project::all()->map->title;
-
-        $projects = Project::where('owner_id', auth()->id())->get();
+        $projects = auth()->user()->projects;
 
         return view('projects/index', compact('projects'));
     }
@@ -39,7 +36,15 @@ class ProjectsController extends Controller
      * Create a new project
      */
     public function store() {
-        $attributes = $this->validateProject();
+//        $attributes = $this->validateProject();
+//        $attributes['notes'] = request('notes');
+
+        $attributes = request()->validate([
+            'title'     => ['required', 'min:3', 'max:50'],
+            'description'     => ['required', 'min:5', 'max:500'],
+            'notes' => ['min:5', 'max:255']
+        ]);
+
         $attributes['owner_id'] = auth()->id();
 //        $user = Auth::user()->name;
 //        $user = auth()->user();
@@ -73,9 +78,25 @@ class ProjectsController extends Controller
      * Update the specified project
      */
     public function update(Project $project) {
-        $this->authorize('update', $project);
+//        $this->authorize('update', $project);
 
-        $project->update($this->validateProject());
+        if (request()->has('notes')) {
+            $attributes = request()->validate(['notes' => 'min:5|max:255']);
+            $attributes['title'] = $project->title;
+            $attributes['description'] = $project->description;
+        } else {
+            $attributes = $this->validateProject();
+        }
+
+//        dd($attributes);
+
+//        $attributes = request()->validate([
+//            'title'     => ['required', 'min:3', 'max:50'],
+//            'description'     => ['required', 'min:5', 'max:255'],
+//            'notes' => ['min:5', 'max:255']
+//        ]);
+
+        $project->update($attributes);
 
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);

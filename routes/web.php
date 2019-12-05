@@ -39,4 +39,3 @@ Route::delete('/projects/{project}/tasks/{task}', 'TasksController@destroy');
 //Project's tasks
 Route::get('/projects/{project}/create', 'ProjectTasksController@create');
 Route::post('/projects/{project}/projectTasks', 'ProjectTasksController@store');
-Route::patch('/projects/{project}/projectTasks/{task}', 'ProjectTasksController@update');

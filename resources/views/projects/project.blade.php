@@ -55,7 +55,16 @@
                                                     <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}" class="flex-grow-1 mr-2">
                                                         @method('PATCH')
                                                         @csrf
-                                                        <input type="text" name="description" value="{{ $task->description }}" class="card-title w-100 m-0 border-0 p-1 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="completed" class="custom-control-input" id="customCheck{{ $task->id }}" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                                                <label class="custom-control-label" for="customCheck{{ $task->id }}"></label>
+                                                            </div>
+
+                                                            <div class="flex-grow-1">
+                                                                <input type="text" name="description" value="{{ $task->description }}" class="card-title w-100 m-0 border-0 p-1 h6 text-capitalize text-dark {{ $task->completed ? 'is-complete' : '' }}">
+                                                            </div>
+                                                        </div>
                                                     </form>
 
                                                     <div class="inside d-flex align-items-center">
@@ -64,12 +73,6 @@
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
-                                                        </form>
-                                                        <form method="POST" action="/projects/{{ $project->id }}/projectTasks/{{ $task->id }}">
-                                                            @method('PATCH')
-                                                            @csrf
-                                                            {{--<input type="text" name="description" value="{{ $task->description }}">--}}
-                                                            <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -84,7 +87,12 @@
                             <!-- Notes -->
                             <section class="notes">
                                 <h2 class="notes-title h5 mb-0">General notes</h2>
-                                <textarea class="notes-text w-100 rounded" style="border-color:#DFDFDF"></textarea>
+                                <form method="POST" action="/projects/{{ $project->id }}">
+                                    @method('PATCH')
+                                    @csrf
+                                    <textarea name="notes" class="notes-text w-100 rounded" style="border-color:#DFDFDF">{{ $project->notes }}</textarea>
+                                    <button type="submit" class="btn btn-sm btn-success">Save</button>
+                                </form>
                             </section><!-- End notes -->
                         </div>
 

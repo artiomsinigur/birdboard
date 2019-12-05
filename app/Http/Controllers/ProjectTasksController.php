@@ -24,18 +24,6 @@ class ProjectTasksController extends Controller
         return redirect('projects/' . $project->id);
     }
 
-    /**
-     * Update a specified task for a project
-     */
-    public function update(Project $project, Task $task)
-    {
-        $task->update([
-            'completed' => request()->has('completed')
-        ]);
-
-        return back();
-    }
-
     public function validateTask() {
         return request()->validate([
             'description' => ['required', 'min:3', 'max:20']

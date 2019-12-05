@@ -12,7 +12,11 @@ class TasksController extends Controller
      * Update a specified task that belongs to a project
      */
     public function update(Project $project, Task $task) {
-        $task->update($this->validateTask());
+        $this->authorize('update', $project);
+
+        $attributes = $this->validateTask();
+        $attributes['completed'] = request()->has('completed');
+        $task->update($attributes);
 
         return redirect()->action('ProjectsController@show', [$project]);
     }
@@ -21,6 +25,8 @@ class TasksController extends Controller
      * Delete a project's task
      */
     public function destroy(Project $project, Task $task) {
+        $this->authorize('delete', $project);
+
         Task::destroy($task->id);
 
         return back();
