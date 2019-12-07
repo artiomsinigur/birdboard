@@ -36,19 +36,14 @@ class ProjectsController extends Controller
      * Create a new project
      */
     public function store() {
-//        $attributes = $this->validateProject();
-//        $attributes['notes'] = request('notes');
+        $attributes = $this->validateProject();
 
-        $attributes = request()->validate([
-            'title'     => ['required', 'min:3', 'max:50'],
-            'description'     => ['required', 'min:5', 'max:500'],
-            'notes' => ['min:5', 'max:255']
-        ]);
+//         Define owner_id for new project
+//        $attributes['owner_id'] = auth()->id();
+//        $project = Project::create($attributes);
 
-        $attributes['owner_id'] = auth()->id();
-//        $user = Auth::user()->name;
-//        $user = auth()->user();
-        $project = Project::create($attributes);
+        // Or we can call projects() method from User that will automatically set the owner_id
+        $project = auth()->user()->projects()->create($attributes);
 
         return redirect('/projects/' . $project->id);
     }
@@ -59,7 +54,6 @@ class ProjectsController extends Controller
      */
     public function show(Project $project) {
 //        abort_if($project->owner_id !== auth()->id(), 403);
-
         $this->authorize('view', $project);
 
         return view('projects/project', compact('project'));
@@ -99,13 +93,6 @@ class ProjectsController extends Controller
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);
     }
-
-
-//    public function updateNotes(Project $project) {
-//        $project->update(request()->validate(['notes' => 'min:5|max:255']));
-//
-//        return back();
-//    }
 
     /**
      * Delete the specified project

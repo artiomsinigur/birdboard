@@ -18,4 +18,8 @@ class Project extends Model
     public function addTask($task) {
         $this->tasks()->create($task);
     }
+
+//    public function owner() {
+//        return $this->hasOne(Project::class, 'owner_id');
+//    }
 }
