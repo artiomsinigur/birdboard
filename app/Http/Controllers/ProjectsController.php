@@ -78,7 +78,7 @@ class ProjectsController extends Controller
      * Update the specified project
      */
     public function update(Project $project) {
-//        $this->authorize('update', $project);
+        $this->authorize('update', $project);
 
         if (request()->has('notes')) {
             $attributes = request()->validate(['notes' => 'min:5|max:255']);
@@ -87,8 +87,6 @@ class ProjectsController extends Controller
         } else {
             $attributes = $this->validateProject();
         }
-
-//        dd($attributes);
 
 //        $attributes = request()->validate([
 //            'title'     => ['required', 'min:3', 'max:50'],
@@ -101,6 +99,13 @@ class ProjectsController extends Controller
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);
     }
+
+
+//    public function updateNotes(Project $project) {
+//        $project->update(request()->validate(['notes' => 'min:5|max:255']));
+//
+//        return back();
+//    }
 
     /**
      * Delete the specified project

@@ -30,6 +30,7 @@ Route::post('/projects', 'ProjectsController@store');
 Route::get('/projects/{project}', 'ProjectsController@show'); // ->middleware('can:show,project');
 Route::get('/projects/{project}/edit', 'ProjectsController@edit');
 Route::patch('/projects/{project}', 'ProjectsController@update');
+//Route::patch('/projects/{project}/notes', 'ProjectsController@updateNotes');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
 
 //Tasks
