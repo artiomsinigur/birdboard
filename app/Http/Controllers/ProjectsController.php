@@ -38,7 +38,7 @@ class ProjectsController extends Controller
     public function store() {
         $attributes = $this->validateProject();
 
-//         Define owner_id for new project
+//        Define owner_id for new project
 //        $attributes['owner_id'] = auth()->id();
 //        $project = Project::create($attributes);
 
@@ -74,21 +74,7 @@ class ProjectsController extends Controller
     public function update(Project $project) {
         $this->authorize('update', $project);
 
-        if (request()->has('notes')) {
-            $attributes = request()->validate(['notes' => 'min:5|max:255']);
-            $attributes['title'] = $project->title;
-            $attributes['description'] = $project->description;
-        } else {
-            $attributes = $this->validateProject();
-        }
-
-//        $attributes = request()->validate([
-//            'title'     => ['required', 'min:3', 'max:50'],
-//            'description'     => ['required', 'min:5', 'max:255'],
-//            'notes' => ['min:5', 'max:255']
-//        ]);
-
-        $project->update($attributes);
+        $project->update($this->validateProject());
 
 //        return redirect()->route('projects', [$project]); // ???
         return redirect()->action('ProjectsController@show', [$project]);
@@ -111,8 +97,9 @@ class ProjectsController extends Controller
      */
     private function validateProject() {
         return request()->validate([
-            'title'     => ['required', 'min:3', 'max:50'],
-            'description'     => ['required', 'min:5', 'max:500']
+            'title'     => ['sometimes', 'required', 'min:3', 'max:50'],
+            'description'     => ['sometimes', 'required', 'min:5', 'max:255'],
+            'notes' => ['nullable', 'min:3', 'max:255']
         ]);
     }
 }

@@ -90,7 +90,12 @@
                                 <form method="POST" action="/projects/{{ $project->id }}">
                                     @method('PATCH')
                                     @csrf
-                                    <textarea name="notes" class="notes-text w-100 rounded" style="border-color:#DFDFDF">{{ $project->notes }}</textarea>
+                                    <div class="form-group">
+                                        <textarea name="notes" class="notes-text w-100 rounded form-control {{ $errors->has('notes') ? 'is-invalid' : '' }}" >{{ $project->notes }}</textarea>
+                                        @error('notes')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <button type="submit" class="btn btn-sm btn-success">Save</button>
                                 </form>
                             </section><!-- End notes -->
