@@ -25,9 +25,6 @@ class Project extends Model
 
     // Record an activity when task is created and completed
     public function recordActivity($type) {
-        Activity::create([
-            'project_id' => $this->id,
-            'description' => $type
-        ]);
+        $this->activity()->create(['description' => $type]);
     }
 }
