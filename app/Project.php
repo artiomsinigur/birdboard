@@ -23,7 +23,7 @@ class Project extends Model
         return $this->hasMany(Activity::class);
     }
 
-    // Record an activity when task is created and completed
+    // Record an activity for project and task
     public function recordActivity($type) {
         $this->activity()->create(['description' => $type]);
     }
