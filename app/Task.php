@@ -25,6 +25,11 @@ class Task extends Model
                 $task->project->recordActivity('Task completed');
             });
         }
+
+        // Deleting a task records project activity
+        static::deleted(function($task) {
+            $task->project->recordActivity('Task deleted');
+        });
     }
 
     /**
