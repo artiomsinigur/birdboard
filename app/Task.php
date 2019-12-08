@@ -23,12 +23,14 @@ class Task extends Model
         });
 
         // Updating a task records project activity
-        static::updated(function ($task) {
-            Activity::create([
-                'project_id' => $task->project->id,
-                'description' => 'Task completed'
-            ]);
-        });
+        if (request()->has('completed')) {
+            static::updated(function ($task) {
+                Activity::create([
+                    'project_id' => $task->project->id,
+                    'description' => 'Task completed'
+                ]);
+            });
+        }
     }
 
     /**
