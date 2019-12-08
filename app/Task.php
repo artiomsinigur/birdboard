@@ -16,19 +16,13 @@ class Task extends Model
 
         // Creating a new task records project activity
         static::created(function ($task) {
-            Activity::create([
-                'project_id' => $task->project->id,
-                'description' => 'Task created'
-            ]);
+            $task->project->recordActivity('Task created');
         });
 
         // Updating a task records project activity
         if (request()->has('completed')) {
             static::updated(function ($task) {
-                Activity::create([
-                    'project_id' => $task->project->id,
-                    'description' => 'Task completed'
-                ]);
+                $task->project->recordActivity('Task completed');
             });
         }
     }

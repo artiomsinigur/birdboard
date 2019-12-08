@@ -19,13 +19,6 @@ class TasksController extends Controller
         $attributes['completed'] = request()->has('completed');
         $task->update($attributes);
 
-//        if (request()->has('completed')) {
-//            Activity::create([
-//                'project_id' => $project->id,
-//                'description' => 'complete_task'
-//            ]);
-//        }
-
         return redirect()->action('ProjectsController@show', [$project]);
     }
 

@@ -17,15 +17,17 @@ class Project extends Model
 
     public function addTask($task) {
         $this->tasks()->create($task);
-
-        // Creating a new task records project activity
-//        Activity::create([
-//            'project_id' => $this->id,
-//            'description' => 'created_task'
-//        ]);
     }
 
     public function activity() {
         return $this->hasMany(Activity::class);
+    }
+
+    // Record an activity when task is created and completed
+    public function recordActivity($type) {
+        Activity::create([
+            'project_id' => $this->id,
+            'description' => $type
+        ]);
     }
 }
