@@ -29,6 +29,9 @@
             color: #B0B2B4 !important;
             text-decoration: line-through;
         }
+        .text-color-light {
+            color: rgb(195, 195, 195);
+        }
     </style>
 </head>
 <body style="background-color: #F5F6F9">

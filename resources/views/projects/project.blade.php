@@ -112,12 +112,7 @@
             <div class="col-12 col-md-3 bg-white pt-4 mb-4">
                 <aside class="latest-updates">
                     <h3 class="latest-updates-title h5">Latest Updates</h3>
-
-                    <ul class="latest-updates-list list-unstyled" style="font-size: .85rem">
-                        <li class="latest-updates-item"><a href="" class="py-1 d-block text-black-50">Task 1</a></li>
-                        <li class="latest-updates-item"><a href="" class="py-1 d-block text-black-50">Task 2</a></li>
-                        <li class="latest-updates-item"><a href="" class="py-1 d-block text-black-50">Task 3</a></li>
-                    </ul>
+                    @include('projects.activity.card')
                 </aside><!-- /End latest-update -->
             </div>
         </div>

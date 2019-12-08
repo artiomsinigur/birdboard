@@ -20,10 +20,12 @@ class Project extends Model
     }
 
     public function activity() {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->latest();
     }
 
-    // Record an activity for project and task
+    /**
+     * Record an activity for project and task
+     */
     public function recordActivity($type) {
         $this->activity()->create(['description' => $type]);
     }
